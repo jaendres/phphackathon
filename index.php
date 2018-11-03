@@ -1,6 +1,6 @@
 
 <?php
-echo "1";
+echo phpinfo();exit;
     $phrase = array(
         'jonesy1' => 'Bullets, Swords and grenades. Monsters better be afraid of me!',
         'hawk' => 'You See this, husks? Im dancing on your graves!',
@@ -14,7 +14,7 @@ echo "2";
     $rcsdk = new RingCentral\SDK\SDK(getenv('RINGCENTRAL_CLIENT_ID'), getenv('RINGCENTRAL_CLIENT_SECRET'), getenv('RINGCENTRAL_SERVER_URL'));
 
     $platform = $rcsdk->platform();
-echo "3-".getenv('RINGCENTRAL_USERNAME')."-".getenv('RINGCENTRAL_EXTENSION')."-".getenv('RINGCENTRAL_PASSWORD');
+echo "3-";
     $platform->login(getenv('RINGCENTRAL_USERNAME'), getenv('RINGCENTRAL_EXTENSION'), getenv('RINGCENTRAL_PASSWORD'));
 
     $r = $platform->post('/account/~/extension/~/sms', array(
