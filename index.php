@@ -34,8 +34,8 @@ $platform = $rcsdk->platform();
 $platform->login(getenv('RINGCENTRAL_USERNAME'), getenv('RINGCENTRAL_EXTENSION'), getenv('RINGCENTRAL_PASSWORD'));
 // Make a call
 $response = $platform->post('/account/~/extension/~/ringout', array(
-    'from' => array('phoneNumber' => $credentials['fromPhoneNumber']),
-    'to'   => array('phoneNumber' => $credentials['toPhoneNumber'])
+    'from' => array('phoneNumber' => getenv('RINGCENTRAL_USERNAME')),
+    'to'   => array('phoneNumber' => getenv('RINGCENTRAL_RECEIVER'))
 ));
 $json = $response->json();
 $lastStatus = $json->status->callStatus;
