@@ -40,25 +40,34 @@ echo "4";
     print_r($r->json()->id);
  
 
-$rcsdk = new RingCentral\SDK\SDK(getenv('RINGCENTRAL_CLIENT_ID'), getenv('RINGCENTRAL_CLIENT_SECRET'), getenv('RINGCENTRAL_SERVER_URL'));
-$platform = $rcsdk->platform();
-// Authorize
-$platform->login(getenv('RINGCENTRAL_USERNAME'), getenv('RINGCENTRAL_EXTENSION'), getenv('RINGCENTRAL_PASSWORD'));
-// Make a call
-$response = $platform->post('/account/~/extension/~/ringout', array(
-    'from' => array('phoneNumber' => getenv('RINGCENTRAL_USERNAME')),
-    'to'   => array('phoneNumber' => getenv('RINGCENTRAL_RECEIVER'))
-));
-$json = $response->json();
-$lastStatus = $json->status->callStatus;
-// Poll for call status updates
-while ($lastStatus == 'InProgress') {
-    $current = $platform->get($json->uri);
-    $currentJson = $current->json();
-    $lastStatus = $currentJson->status->callStatus;
-    print 'Status: ' . json_encode($currentJson->status) . PHP_EOL;
-    sleep(2);
-}
-print 'Done.' . PHP_EOL;
 */
+
+if( $_POST['PhoneNumber'] != '' AND $_POST['CharacterName'] != '' ){
+
+
+    $rcsdk = new RingCentral\SDK\SDK(getenv('RINGCENTRAL_CLIENT_ID'), getenv('RINGCENTRAL_CLIENT_SECRET'), getenv('RINGCENTRAL_SERVER_URL'));
+    $platform = $rcsdk->platform();
+    // Authorize
+    $platform->login(getenv('RINGCENTRAL_USERNAME'), getenv('RINGCENTRAL_EXTENSION'), getenv('RINGCENTRAL_PASSWORD'));
+    // Make a call
+    $response = $platform->post('/account/~/extension/~/ringout', array(
+        'from' => array('phoneNumber' => getenv('RINGCENTRAL_USERNAME')),
+        'to'   => array('phoneNumber' => $_POST['PhoneNumber'])
+    ));
+    $json = $response->json();
+    $lastStatus = $json->status->callStatus;
+    // Poll for call status updates
+    while ($lastStatus == 'InProgress') {
+        $current = $platform->get($json->uri);
+        $currentJson = $current->json();
+        $lastStatus = $currentJson->status->callStatus;
+        print 'Status: ' . json_encode($currentJson->status) . PHP_EOL;
+        sleep(2);
+    }
+    
+    print $phrase[$_POST['CharacterName']];
+
+}
+
+
 ?>
