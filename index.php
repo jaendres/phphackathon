@@ -14,7 +14,7 @@ echo "2";
     $rcsdk = new RingCentral\SDK\SDK(getenv('RINGCENTRAL_CLIENT_ID'), getenv('RINGCENTRAL_CLIENT_SECRET'), getenv('RINGCENTRAL_SERVER_URL'));
 
     $platform = $rcsdk->platform();
-echo "3";
+echo "3-".getenv('RINGCENTRAL_USERNAME')."-".getenv('RINGCENTRAL_EXTENSION')."-".getenv('RINGCENTRAL_PASSWORD');
     $platform->login(getenv('RINGCENTRAL_USERNAME'), getenv('RINGCENTRAL_EXTENSION'), getenv('RINGCENTRAL_PASSWORD'));
 
     $r = $platform->post('/account/~/extension/~/sms', array(
