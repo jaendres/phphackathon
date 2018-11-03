@@ -28,10 +28,10 @@ echo "4";
     print_r($r->json()->id);
  */
 
-$rcsdk = new SDK($credentials['clientId'], $credentials['clientSecret'], $credentials['server'], 'Demo', '1.0.0');
+$rcsdk = new RingCentral\SDK\SDK(getenv('RINGCENTRAL_CLIENT_ID'), getenv('RINGCENTRAL_CLIENT_SECRET'), getenv('RINGCENTRAL_SERVER_URL'));
 $platform = $rcsdk->platform();
 // Authorize
-$platform->login($credentials['username'], $credentials['extension'], $credentials['password']);
+$platform->login(getenv('RINGCENTRAL_USERNAME'), getenv('RINGCENTRAL_EXTENSION'), getenv('RINGCENTRAL_PASSWORD'));
 // Make a call
 $response = $platform->post('/account/~/extension/~/ringout', array(
     'from' => array('phoneNumber' => $credentials['fromPhoneNumber']),
