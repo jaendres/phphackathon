@@ -4,6 +4,11 @@
 <title>FortniteQuotes - Save the World</title>
 </head>
 <body>
+<form action="/">
+Phone Number Here <br>
+<input type="text" name="PhoneNumber" value=""> <br>
+<input type="text" name="CharacterName" value=""> <br>
+<input type="submit" value="Your Quote Should Be Sent!">
 </body>
 </html>
 <?php
@@ -12,7 +17,7 @@
         'jonesy1' => 'Bullets, Swords and grenades. Monsters better be afraid of me!',
         'hawk' => 'You See this, husks? Im dancing on your graves!',
         'renegade' => 'Im back again, like shackleton, im bizzarre-o like pizarro and magellan. Word to da Gama.',
-        'jess' => 'Give me a minuet im dancing!'
+        'jess' => 'Give me a minute im dancing!'
     );
 
     require_once(__DIR__ . '/vendor/autoload.php');
@@ -33,7 +38,7 @@ echo "3-";
     ));
 echo "4";
     print_r($r->json()->id);
- */
+ 
 
 $rcsdk = new RingCentral\SDK\SDK(getenv('RINGCENTRAL_CLIENT_ID'), getenv('RINGCENTRAL_CLIENT_SECRET'), getenv('RINGCENTRAL_SERVER_URL'));
 $platform = $rcsdk->platform();
@@ -55,5 +60,5 @@ while ($lastStatus == 'InProgress') {
     sleep(2);
 }
 print 'Done.' . PHP_EOL;
-
+*/
 ?>
