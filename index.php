@@ -1,4 +1,11 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+<title>FortniteQuotes - Save the World</title>
+</head>
+<body>
+</body>
+</html>
 <?php
 
     $phrase = array(
