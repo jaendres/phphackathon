@@ -8,7 +8,7 @@ echo "1";
         'jess' => 'Give me a minuet im dancing!'
     );
 
-    require_once(__DIR__ . '../vendor/autoload.php');
+    require_once(__DIR__ . '/vendor/autoload.php');
 echo "2";
     $dotenv = new Dotenv();
     $dotenv->load(__DIR__.'/.env');
