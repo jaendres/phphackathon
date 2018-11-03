@@ -10,8 +10,6 @@ echo "1";
 
     require_once(__DIR__ . '/vendor/autoload.php');
 echo "2";
-    $dotenv = new Dotenv();
-    $dotenv->load(__DIR__.'/.env');
 
     $rcsdk = new RingCentral\SDK\SDK(getenv('RINGCENTRAL_CLIENT_ID'), getenv('RINGCENTRAL_CLIENT_SECRET'), getenv('RINGCENTRAL_SERVER_URL'));
 
