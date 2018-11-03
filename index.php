@@ -4,7 +4,7 @@
 <title>FortniteQuotes - Save the World</title>
 </head>
 <body>
-<form action="/">
+<form action="/" method="post">
 Phone Number Here <br>
 <input type="text" name="PhoneNumber" value=""> <br>
 <input type="text" name="CharacterName" value=""> <br>
