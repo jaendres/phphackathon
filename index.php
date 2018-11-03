@@ -18,9 +18,9 @@ echo "3";
     $platform->login(getenv('RINGCENTRAL_USERNAME'), getenv('RINGCENTRAL_EXTENSION'), getenv('RINGCENTRAL_PASSWORD'));
 
     $r = $platform->post('/account/~/extension/~/sms', array(
-        'from' => array('1234567890' => getenv('RINGCENTRAL_USERNAME')),
+        'from' => array('phoneNumber' => getenv('RINGCENTRAL_USERNAME')),
         'to' => array(
-            array('6085135286' => getenv('RINGCENTRAL_RECEIVER')),
+            array('phoneNumber' => getenv('RINGCENTRAL_RECEIVER')),
         ),
         'text' => $phrase['jess'],
     ));
