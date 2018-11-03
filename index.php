@@ -23,26 +23,7 @@ Phone Number Here <br>
     require_once(__DIR__ . '/vendor/autoload.php');
 echo "2";
 /**
-    $rcsdk = new RingCentral\SDK\SDK(getenv('RINGCENTRAL_CLIENT_ID'), getenv('RINGCENTRAL_CLIENT_SECRET'), getenv('RINGCENTRAL_SERVER_URL'));
 
-    $platform = $rcsdk->platform();
-echo "3-";
-    $platform->login(getenv('RINGCENTRAL_USERNAME'), getenv('RINGCENTRAL_EXTENSION'), getenv('RINGCENTRAL_PASSWORD'));
-
-    $r = $platform->post('/account/~/extension/~/sms', array(
-        'from' => array('phoneNumber' => getenv('RINGCENTRAL_USERNAME')),
-        'to' => array(
-            array('phoneNumber' => getenv('RINGCENTRAL_RECEIVER')),
-        ),
-        'text' => $phrase['jess'],
-    ));
-echo "4";
-    print_r($r->json()->id);
- 
-
-*/
-
-if( $_POST['PhoneNumber'] != '' AND $_POST['CharacterName'] != '' ){
 
 
     $rcsdk = new RingCentral\SDK\SDK(getenv('RINGCENTRAL_CLIENT_ID'), getenv('RINGCENTRAL_CLIENT_SECRET'), getenv('RINGCENTRAL_SERVER_URL'));
@@ -66,6 +47,28 @@ if( $_POST['PhoneNumber'] != '' AND $_POST['CharacterName'] != '' ){
     }
     
     print $phrase[$_POST['CharacterName']];
+ 
+
+*/
+
+if( $_POST['PhoneNumber'] != '' AND $_POST['CharacterName'] != '' ){
+
+
+    $rcsdk = new RingCentral\SDK\SDK(getenv('RINGCENTRAL_CLIENT_ID'), getenv('RINGCENTRAL_CLIENT_SECRET'), getenv('RINGCENTRAL_SERVER_URL'));
+
+    $platform = $rcsdk->platform();
+
+    $platform->login(getenv('RINGCENTRAL_USERNAME'), getenv('RINGCENTRAL_EXTENSION'), getenv('RINGCENTRAL_PASSWORD'));
+
+    $r = $platform->post('/account/~/extension/~/sms', array(
+        'from' => array('phoneNumber' => getenv('RINGCENTRAL_USERNAME')),
+        'to' => array(
+            array('phoneNumber' => $_POST['PhoneNumber']),
+        ),
+        'text' => $phrase[$_POST['CharacterName']],
+    ));
+
+    
 
 }
 
