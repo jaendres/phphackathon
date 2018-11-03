@@ -10,7 +10,7 @@
 
     require_once(__DIR__ . '/vendor/autoload.php');
 echo "2";
-
+/**
     $rcsdk = new RingCentral\SDK\SDK(getenv('RINGCENTRAL_CLIENT_ID'), getenv('RINGCENTRAL_CLIENT_SECRET'), getenv('RINGCENTRAL_SERVER_URL'));
 
     $platform = $rcsdk->platform();
@@ -26,5 +26,27 @@ echo "3-";
     ));
 echo "4";
     print_r($r->json()->id);
+ */
+
+$rcsdk = new SDK($credentials['clientId'], $credentials['clientSecret'], $credentials['server'], 'Demo', '1.0.0');
+$platform = $rcsdk->platform();
+// Authorize
+$platform->login($credentials['username'], $credentials['extension'], $credentials['password']);
+// Make a call
+$response = $platform->post('/account/~/extension/~/ringout', array(
+    'from' => array('phoneNumber' => $credentials['fromPhoneNumber']),
+    'to'   => array('phoneNumber' => $credentials['toPhoneNumber'])
+));
+$json = $response->json();
+$lastStatus = $json->status->callStatus;
+// Poll for call status updates
+while ($lastStatus == 'InProgress') {
+    $current = $platform->get($json->uri);
+    $currentJson = $current->json();
+    $lastStatus = $currentJson->status->callStatus;
+    print 'Status: ' . json_encode($currentJson->status) . PHP_EOL;
+    sleep(2);
+}
+print 'Done.' . PHP_EOL;
 
 ?>
