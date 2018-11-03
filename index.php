@@ -1,6 +1,6 @@
 
 <?php
-echo phpinfo();exit;
+
     $phrase = array(
         'jonesy1' => 'Bullets, Swords and grenades. Monsters better be afraid of me!',
         'hawk' => 'You See this, husks? Im dancing on your graves!',
