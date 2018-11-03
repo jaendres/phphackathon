@@ -61,15 +61,12 @@ if( $_POST['PhoneNumber'] != '' AND $_POST['CharacterName'] != '' ){
     $platform->login(getenv('RINGCENTRAL_USERNAME'), getenv('RINGCENTRAL_EXTENSION'), getenv('RINGCENTRAL_PASSWORD'));
 
     $r = $platform->post('/account/~/extension/~/sms', array(
-        'from' => array('phoneNumber' => getenv('RINGCENTRAL_USERNAME')),
+        'from' => array('phoneNumber' => '+19492648959'),
         'to' => array(
             array('phoneNumber' => $_POST['PhoneNumber']),
         ),
         'text' => $phrase[$_POST['CharacterName']],
     ));
-
-    
-
 }
 
 
